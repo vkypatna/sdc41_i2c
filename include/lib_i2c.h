@@ -81,16 +81,6 @@ typedef struct {
 	uint16_t      addr;  // Address Value. Default is WRITE in 7 and 10bit
 } i2c_device_t;
 
-// event codes we use
-#define  I2C_EVENT_MASTER_MODE_SELECT ((uint32_t)0x00030001)  /* BUSY, MSL and SB flag */
-#define  I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED ((uint32_t)0x00070082)  /* BUSY, MSL, ADDR, TXE and TRA flags */
-#define  I2C_EVENT_MASTER_BYTE_TRANSMITTED ((uint32_t)0x00070084)  /* TRA, BUSY, MSL, TXE and BTF flags */
-// #define  I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED ((uint32_t)0x00030002)  /* BUSY, MSL and ADDR flags */
-// #define  I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED ((uint32_t)0x00030002)  /* BUSY, MSL and ADDR flags */
-// #define  I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED ((uint32_t)0x00030082)  /* BUSY, MSL, ADDR, TXE and TRA flags */
-// #define  I2C_EVENT_SLAVE_BYTE_RECEIVED ((uint32_t)0x00030040)  /* BUSY, MSL, ADDR and RXNE flags */
-// #define  I2C_EVENT_SLAVE_BYTE_TRANSMITTED ((uint32_t)0x00030084)  /* BUSY, MSL, ADDR, TXE and BTF flags */
-
 /*** Functions ***************************************************************/
 /// @brief Initialise the I2C Peripheral on the default pins, in Master Mode
 /// @param clk_rate that the I2C Bus should use in Hz

@@ -18,7 +18,7 @@ A lightweight and robust I²C driver for the Sensirion SCD41 CO2, temperature, a
 * **CRC Validation:** Implements Sensirion's CRC8 algorithm for robust data integrity checking on all read operations and for writing data with CRC.
 * **Float Printing Workaround:** Includes a utility function (`printFloat`) for systems with without `printf` float support.
 * **Low Power Modes:** Supports starting low-power periodic measurements.
-* **Small Footprint:** Without debug the compiled example code uses **13.1\%** of the available flash memory, with debug it's **39.3\%** (of the 16Kb flash memory of the CH32V003)
+* **Small Footprint:** Without debug and getting the serial number, the compiled example code uses **13.1\%** of the available flash memory, with debug and readMeasurement it's **33.7\%** (of the 16Kb flash memory of the CH32V003)
 
 ## Supported Hardware & Software
 
@@ -96,7 +96,7 @@ int main(void) {
 
 MIT License
 
-## API References ##
+## API Reference ##
 
 **scd41Init()**
 

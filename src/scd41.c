@@ -160,10 +160,7 @@ uint8_t scd41readMeasurement(float *co2, float *temperature, float *humidity)
         return false;
     } 
     *co2 = co2_raw;
-    int32_t co2_int_part = (int32_t)*co2;
-    int32_t co2_dec_part = (int32_t)((*co2 - co2_int_part) * 100.0f); // Get two decimal places
-    if (co2_dec_part < 0) co2_dec_part = -co2_dec_part; // Handle negative numbers correctly for decimal part
-
+    
     // Temperature request measurement data, check the CRC, calculate the temperature value and prepare it for output
     uint16_t temp_raw = (measurementData[3] << 8) | measurementData[4];
     uint8_t temp_crc = measurementData[5];
@@ -174,11 +171,7 @@ uint8_t scd41readMeasurement(float *co2, float *temperature, float *humidity)
         return false;
     }
     *temperature = -45.0f + 175.0f * ((float)temp_raw / 65536.0f);
-    int32_t temp_int_part = (int32_t)*temperature;
-    int32_t temp_dec_part = (int32_t)((*temperature - temp_int_part) * 100.0f); // Get two decimal places
-    if (temp_dec_part < 0) temp_dec_part = -temp_dec_part; // Handle negative numbers correctly for decimal part
-
-
+    
     // Humidity request measurement data, check the CRC, calculate the humidity value and prepare it for output
     uint16_t hum_raw = (measurementData[6] << 8) | measurementData[7];
     uint8_t hum_crc = measurementData[8];
@@ -189,9 +182,6 @@ uint8_t scd41readMeasurement(float *co2, float *temperature, float *humidity)
         return false;
     }
     *humidity = 100.0f * (float)hum_raw / 65536.0f;
-    int32_t hum_int_part = (int32_t)*humidity;
-    int32_t hum_dec_part = (int32_t)((*humidity - hum_int_part) * 100.0f); // Get two decimal places
-    if (hum_dec_part < 0) hum_dec_part = -hum_dec_part; // Handle negative numbers correctly for decimal part
     
 #ifdef DEBUG
     printf("CO2: ");

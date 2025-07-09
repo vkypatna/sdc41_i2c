@@ -32,11 +32,9 @@
 #include "lib_i2c.h"
 #include <stddef.h>
 
-#include <stdio.h>
-
 /*** Static Variables ********************************************************/
 /// @brief Timeout variable. Set and decrimented in functions
-static int32_t _i2c_timeout = 1000;
+static int32_t _i2c_timeout = 0;
 
 
 /*** Macro Functions *********************************************************/
@@ -319,10 +317,7 @@ i2c_err_t i2c_write_reg(const i2c_device_t *dev,	const uint8_t reg,
 			++cbyte;
 
 			// Make sure no errors occured for this byte
-			if(i2c_ret != I2C_OK || (i2c_ret = i2c_error()) != I2C_OK) {
-				printf("FAIL!\n");
-				break;
-			}
+			if(i2c_ret != I2C_OK || (i2c_ret = i2c_error()) != I2C_OK) break;
 		}
 	}
 

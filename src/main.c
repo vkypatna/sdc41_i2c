@@ -30,6 +30,11 @@ int main()
 	uint64_t serialNumber = 0;
 	if (!scd41GetSerialNumber(&serialNumber)) {
 		printf("Failed to get SCD41 serial number.\n");
+	} else {
+		printf("SCD41 Serial Number: %04X-%04X-%04X\n",
+			(uint16_t)(serialNumber >> 32), 
+			(uint16_t)(serialNumber >> 16), 
+			(uint16_t)(serialNumber & 0xFFFF));
 	}
 	
 	// Enable periodic measurement, where the module will product readings every 5 seconds.
@@ -39,9 +44,15 @@ int main()
 	{
 		// Read the measurement data
 		float co2, temperature, humidity;
-		if (scd41readMeasurement(&co2, &temperature, &humidity)) { printf("Measurement data collected OK.\n"); }
-			else 												 { printf("Failed to read measurement data.\n"); }
-		
+		if (scd41readMeasurement(&co2, &temperature, &humidity)) {
+				printf("Measurement data collected OK.\n"); 
+				printf("CO2: "); printFloat(co2);
+				printf("ppm,  Temperature: "); printFloat(temperature);
+				printf("°C, Humidity: "); printFloat(humidity);
+				printf("%%\n");
+			}
+			else { printf("Failed to read measurement data.\n"); }
+
 		// Sleep until the next sensor reading is available.
 		Delay_Ms(5000);
 	}
