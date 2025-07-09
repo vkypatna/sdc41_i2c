@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "PlatformIO",
+			"task": "Test",
+			"problemMatcher": [
+				"$platformio"
+			],
+			"group": "test",
+			"label": "PlatformIO: Test"
+		},
+		{
+			"type": "cppbuild",
+			"label": "C/C++: riscv-none-embed-gcc.exe build active file",
+			"command": "C:/Users/Paul/.platformio/packages/toolchain-riscv/bin/riscv-none-embed-gcc.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"-msmall-data-limit=0",
+				"-msave-restore",
+				"-march=rv32ecxw",
+				"-mabi=ilp32e",
+				"-u _printf_float",
+				"-Wl",
+				"-u,vfprintf lprintf_flt",
+				""
+			],
+			"options": {
+				"cwd": "C:/Users/Paul/.platformio/packages/toolchain-riscv/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:/Users/Paul/.platformio/packages/toolchain-riscv/bin/riscv-none-embed-gcc.exe"
+		}
+	]
+}
